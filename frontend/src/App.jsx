@@ -4,6 +4,7 @@ import MainLayout from "./layout/MainLayout";
 import Home from "./pages/Home";
 import AuthLayout from "./layout/AuthLayout";
 import Signup from "./pages/signup";
+import Login from "./pages/Login";
 const App=()=>{
   return (
     <div className="">
@@ -15,6 +16,7 @@ const App=()=>{
             </Route>
             <Route path="/" element={<AuthLayout/>}>
                 <Route path="/signup" element={<Signup/>}/>
+                <Route path="/signin" element={<Login/>}/>
             </Route>
         </Routes>
       </Router>
