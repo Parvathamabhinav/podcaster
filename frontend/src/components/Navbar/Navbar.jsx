@@ -42,9 +42,10 @@ const Navbar = () => {
               </Link>
             ))}
         </div>
+        {/*login signup*/ }
         <div className=" hidden w-2/6 lg:flex items-center justify-end">
-          <Link className='px-6 py-3 border border-black rounded-full'>Login</Link>
-          <Link className='ms-4 px-6 py-3 bg-black text-white rounded-full'>Signup</Link>
+          <Link to="/signin" className='px-6 py-3 border border-black rounded-full'>Login</Link>
+          <Link to="/signup" className='ms-4 px-6 py-3 bg-black text-white rounded-full'>Signup</Link>
         </div>
         <div className='w-4/6 flex items-center  justify-end lg:hidden z-50'>
          <button
