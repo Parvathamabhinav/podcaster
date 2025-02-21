@@ -2,7 +2,14 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { RxCross2 } from "react-icons/rx";
 import {IoReorderThreeOutline} from "react-icons/io5";
+import { useSelector } from 'react-redux';
+
 const Navbar = () => {
+
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  // console.log(isLoggedIn);
+
+
   const [MobileNav,setMobileNav]=useState(false);
 
   const navLinks=[
@@ -18,10 +25,7 @@ const Navbar = () => {
       name: 'All Podcasts',
       path: '/all-podcasts',
     },
-    {
-      name: 'Profile',
-      path: '/profile',
-    }
+    
   ];
   return (
     <nav className='px-4 md:px-8 lg:px-12 py-2' relative>
@@ -43,10 +47,21 @@ const Navbar = () => {
             ))}
         </div>
         {/*login signup*/ }
-        <div className=" hidden w-2/6 lg:flex items-center justify-end">
-          <Link to="/signin" className='px-6 py-3 border border-black rounded-full'>Login</Link>
-          <Link to="/signup" className='ms-4 px-6 py-3 bg-black text-white rounded-full'>Signup</Link>
-        </div>
+        {/*if not logged in show login & signup*/}
+        {!isLoggedIn && (
+          <>
+             <div className=" hidden w-2/6 lg:flex items-center justify-end">
+                <Link to="/signin" className='px-6 py-3 border border-black rounded-full'>Login</Link>
+                <Link to="/signup" className='ms-4 px-6 py-3 bg-black text-white rounded-full'>Signup</Link>
+            </div>
+          </>
+        )}
+        {/*if logged in show profile*/ }
+        {isLoggedIn && (
+          <>
+            <Link to="/profile" className='ms-4 px-6 py-3 bg-black text-white rounded-full'>Profile</Link>
+          </>
+        )}
         <div className='w-4/6 flex items-center  justify-end lg:hidden z-50'>
          <button
           className={`text-4xl ${
@@ -71,7 +86,7 @@ const Navbar = () => {
                 ))}  
                 <Link 
                   
-                  to="/login" 
+                  to="/signin" 
                   className="mb-12 text-3xl hover:font-semibold transition-all duration-300">
                   Login
                 </Link>

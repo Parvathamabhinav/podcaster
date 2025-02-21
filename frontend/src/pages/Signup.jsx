@@ -1,7 +1,12 @@
 import {React,useState} from 'react'
 import { Link }from "react-router-dom"
 import axios from "axios"
+import { useDispatch, useSelector } from 'react-redux'
+import { authActions } from '../store/auth'
+import ErrorPage from './ErrorPage'
 const signup = () => {
+  const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn)
+  const dispatch=useDispatch();
   const [Values,setValues]=useState({
     username:"",
     email:"",
@@ -15,12 +20,16 @@ const signup = () => {
     try{
       const res=await axios.post("http://localhost:1000/api/v1/signup",Values);
       console.log(res.data.message);
+      dispatch(authActions.logout())
     }catch(err){
       console.log(err);
     }
   }
   return (
-    <div className='h-screen bg-green-100 flex items-center justify-center'>
+    <>
+    {
+      isLoggedIn ? <ErrorPage/>: 
+      <div className='h-screen bg-green-100 flex items-center justify-center'>
      <div className="w-4/6 md:w-3/6 lg:w-2/6  flex flex-col items-center justify-center">
      <Link to="/" className="text-2xl font-bold">
         PODCASTER
@@ -76,6 +85,8 @@ const signup = () => {
      </div>
      </div>
     </div>
+    }
+    </>
   )
 }
 

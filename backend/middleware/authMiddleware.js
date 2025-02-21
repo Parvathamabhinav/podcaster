@@ -2,7 +2,7 @@ const jwt=require('jsonwebtoken');
 const User=require("../models/user");
 
 const authMiddleware=async(req,res,next)=>{
-    const token=req.cookies.podcastUserToken;
+    const token=req.cookies.podcasterUserToken;
     try{
         if(token){
             const decoded=jwt.verify(token,process.env.JWT_SECRET);
