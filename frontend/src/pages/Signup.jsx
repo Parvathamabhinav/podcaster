@@ -4,7 +4,9 @@ import axios from "axios"
 import { useDispatch, useSelector } from 'react-redux'
 import { authActions } from '../store/auth'
 import ErrorPage from './ErrorPage'
+import { useNavigate } from 'react-router-dom'
 const signup = () => {
+  const navigate=useNavigate();
   const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn)
   const dispatch=useDispatch();
   const [Values,setValues]=useState({
@@ -20,7 +22,8 @@ const signup = () => {
     try{
       const res=await axios.post("http://localhost:1000/api/v1/signup",Values);
       console.log(res.data.message);
-      dispatch(authActions.logout())
+      dispatch(authActions.logout());
+      navigate("/signin");
     }catch(err){
       console.log(err);
     }
