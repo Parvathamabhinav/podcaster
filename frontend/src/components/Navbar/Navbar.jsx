@@ -23,7 +23,7 @@ const Navbar = () => {
     },
     {
       name: 'All Podcasts',
-      path: '/all-podcasts',
+      path: '/get-podcasts',
     },
     
   ];
