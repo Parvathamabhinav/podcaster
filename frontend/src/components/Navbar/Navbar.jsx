@@ -27,6 +27,9 @@ const Navbar = () => {
     },
     
   ];
+
+  const closeMobileNav=()=>setMobileNav(false); 
+  
   return (
     <nav className='px-4 md:px-8 lg:px-12 py-2' relative>
       <div className='flex items-center justify-between'>
@@ -41,8 +44,11 @@ const Navbar = () => {
         </div>
         <div className=" hidden w-2/6 lg:flex items-center justify-center">
             {navLinks.map((items,i) =>(
-              <Link key={i} to={items.path} className="ms-4 hover:font-semibold transition-all duration-300">
-                {items.name}
+              <Link 
+              key={i} 
+              to={items.path} 
+              className="ms-4 hover:font-semibold transition-all duration-300">
+              {items.name}
               </Link>
             ))}
         </div>
@@ -59,7 +65,7 @@ const Navbar = () => {
         {/*if logged in show profile*/ }
         {isLoggedIn && (
           <>
-            <Link to="/profile" className='ms-4 px-6 py-3 bg-black text-white rounded-full'>Profile</Link>
+            <Link to="/profile" className='ms-4 px-6 py-3 bg-black text-white hidden lg:block rounded-full'>Profile</Link>
           </>
         )}
         <div className='w-4/6 flex items-center  justify-end lg:hidden z-50'>
@@ -72,7 +78,8 @@ const Navbar = () => {
         </div>
       </div>
       {/* mobile nav*/ }
-      <div className={` fixed top-0 left-0 w-full h-screen bg-blue-100 ${MobileNav?"translate-y-[0%]":"translate-y-[-100%]"} transition-all duration-500 ease-in-out`}>
+      <div className={` fixed top-0 left-0 w-full h-screen bg-blue-100 
+        ${MobileNav?"translate-y-[0%]":"translate-y-[-100%]"} transition-all duration-500 ease-in-out`}>
           
            <div className="h-full flex flex-col items-center justify-center">
                
@@ -80,21 +87,42 @@ const Navbar = () => {
                 <Link 
                 key={i} 
                 to={items.path} 
-                className="mb-12 text-3xl hover:font-semibold transition-all duration-300">
+                className="mb-12 text-3xl hover:font-semibold transition-all duration-300"
+                onClick={closeMobileNav}>
                   {items.name}
                 </Link>
                 ))}  
-                <Link 
+                {!isLoggedIn ? (
+                  <>
+                    <Link 
                   
                   to="/signin" 
-                  className="mb-12 text-3xl hover:font-semibold transition-all duration-300">
+                  className="mb-12 text-3xl hover:font-semibold transition-all duration-300"
+                  onClick={closeMobileNav}>
                   Login
                 </Link>
                 <Link 
                   to="/signup" 
-                  className="mb-12 text-3xl hover:font-semibold transition-all duration-300">
+                  className="mb-12 text-3xl hover:font-semibold transition-all duration-300"
+                  onClick={closeMobileNav}>
                   Signup
                 </Link>
+                  
+                
+                  </>
+                ):(
+                  <>
+                    <Link 
+                  to="/profile" 
+                  className="mb-12 text-3xl hover:font-semibold transition-all duration-300"
+                  onClick={closeMobileNav}>
+                  Profile
+                </Link>
+                  </>
+                )
+                
+                }
+               
             </div>
       </div>
     </nav>
