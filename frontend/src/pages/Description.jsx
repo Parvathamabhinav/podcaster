@@ -17,7 +17,7 @@ const Description = () => {
   },[])
 
     return (
-    <div className='px-4 lg:px-12 py-4  flex flex-col md:flex-row flex-wrap items-start justify-between gap-4'>
+    <div className='px-4 lg:px-12 py-4  flex flex-col md:flex-row  items-start justify-between gap-4'>
       {podcasts && 
       <>
         <div className='w-full  lg:w-2/6 flex items-center justify-center md:justify-start md:items-start'>

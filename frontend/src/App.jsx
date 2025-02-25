@@ -49,6 +49,7 @@ const App=()=>{
               <Route path="/description/:id" element={<Description/>}></Route>
             </Route>
             <Route path="/" element={<AuthLayout/>}>
+            
                 <Route path="/signup" element={<Signup/>}/>
                 <Route path="/signin" element={<Login/>}/>
             </Route>

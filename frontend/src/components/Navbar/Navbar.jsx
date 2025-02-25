@@ -68,7 +68,7 @@ const Navbar = () => {
             <Link to="/profile" className='ms-4 px-6 py-3 bg-black text-white hidden lg:block rounded-full'>Profile</Link>
           </>
         )}
-        <div className='w-4/6 flex items-center  fixed top-4 right-4 justify-end lg:hidden z-[60] '>
+        <div className='w-4/6 flex items-center   top-4 right-4 justify-end lg:hidden z-[60] '>
          <button
           className={`text-4xl ${
             MobileNav? "rotate-360 " :"rotate-180"
@@ -89,7 +89,7 @@ const Navbar = () => {
 
       </div>
       {/* mobile nav*/ }
-      <div className={` fixed top-0 left-0 w-full h-screen bg-blue-100 
+      <div className={`fixed top-0 left-0 w-full h-screen bg-blue-100 
         ${MobileNav?"translate-y-[0%] z-50":"translate-y-[-100%] -z-10"} transition-all duration-500 ease-in-out pointer-events-${MobileNav?"auto":"none"}`}>
 
           
