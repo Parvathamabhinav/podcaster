@@ -31,8 +31,6 @@ const AudioPlayer = () => {
           dispatch(playerActions.closeDiv());
           if(isSongPlaying) {
             audioref.current.pause();
-          }else{
-            audioref.current.play();
           }
           dispatch(playerActions.changeSong(""));
           dispatch(playerActions.changeImage(""));
@@ -84,12 +82,22 @@ const AudioPlayer = () => {
 
 
   useEffect(()=>{
-    handlePlayPodcast();
+    if (songPath) { // Ensure songPath is valid before playing
+      setisSongPlaying(true);
+      audioref.current?.play();
+    }
     const currentAudio=audioref.current;
     if(currentAudio){
       currentAudio.addEventListener("timeupdate",handleTimeUpdate);
       currentAudio.addEventListener("loadedmetadata",handleLoadedMetadata);
     }
+
+    return () => {
+      if (currentAudio) {
+        currentAudio.removeEventListener("timeupdate", handleTimeUpdate);
+        currentAudio.removeEventListener("loadedmetadata", handleLoadedMetadata);
+      }
+    };
   },[songPath])
   return (
     <div className={`${playerDivState?"fixed":"hidden"} h-[15vh] bottom-0 left-0 w-[100%] flex items-center gap-4 bg-zinc-900 text-zinc-300 px-4 rounded`}>

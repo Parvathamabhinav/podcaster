@@ -5,9 +5,9 @@ import AudioPlayer from '../components/AudioPlayer/AudioPlayer'
 
 const MainLayout = () => {
   return (
-    <div className='relative'>
+    <div className='w-100vw h-100vh'>
       <Navbar/>
-      <main>
+      <main  className=''>
       <Outlet/>
       </main>
       <div className='fixed bottom-0 left-0 w-full '>

@@ -31,7 +31,7 @@ const Navbar = () => {
   const closeMobileNav=()=>setMobileNav(false); 
   
   return (
-    <nav className='px-4 md:px-8 lg:px-12 py-2' relative>
+    <nav className=' px-4 md:px-8 lg:px-12 py-2' >
       <div className='flex items-center justify-between'>
         <div className='logo brand-name w-2/6 flex items-center gap-4 '>
           <img 
@@ -68,18 +68,30 @@ const Navbar = () => {
             <Link to="/profile" className='ms-4 px-6 py-3 bg-black text-white hidden lg:block rounded-full'>Profile</Link>
           </>
         )}
-        <div className='w-4/6 flex items-center  justify-end lg:hidden z-50'>
+        <div className='w-4/6 flex items-center  fixed top-4 right-4 justify-end lg:hidden z-[60] '>
          <button
           className={`text-4xl ${
-            MobileNav? "rotate-360" :"rotate-180"
+            MobileNav? "rotate-360 " :"rotate-180"
           } transition-all duration-300`} onClick={()=> setMobileNav(!MobileNav)}>
             {MobileNav ? <RxCross2/>: <IoReorderThreeOutline/>}
          </button>
         </div>
+
+        {/*chatgpt */}
+        {/* <div className='w-4/6 flex items-center justify-end lg:hidden z-[60] fixed top-4 right-4'>
+          <button
+            className={`text-4xl ${MobileNav ? "rotate-360" : "rotate-180"} transition-all duration-300`}
+            onClick={() => setMobileNav(!MobileNav)}
+          >
+            {MobileNav ? <RxCross2 /> : <IoReorderThreeOutline />}
+          </button>
+        </div> */}
+
       </div>
       {/* mobile nav*/ }
       <div className={` fixed top-0 left-0 w-full h-screen bg-blue-100 
-        ${MobileNav?"translate-y-[0%]":"translate-y-[-100%]"} transition-all duration-500 ease-in-out`}>
+        ${MobileNav?"translate-y-[0%] z-50":"translate-y-[-100%] -z-10"} transition-all duration-500 ease-in-out pointer-events-${MobileNav?"auto":"none"}`}>
+
           
            <div className="h-full flex flex-col items-center justify-center">
                
